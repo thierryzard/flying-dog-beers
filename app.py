@@ -8,7 +8,25 @@ import pandas as pd
 url_sex = 'https://raw.githubusercontent.com/J535D165/CoronaWatchNL/master/data/rivm_NL_covid19_sex.csv'
 df_sex = pd.read_csv(url_sex)
 
-print(df_sex) 
+#selecteerd laatste datum
+pd.to_datetime(df_sex['Datum'])
+recent_datum = df_sex['Datum'].max()
+recent_df= df_sex[df_sex['Datum']== recent_datum]
+laatste_update = pd.to_datetime(recent_datum)
+
+
+#split vrouwen/mannen
+man= recent_df[recent_df["Geslacht"]== 'Man']
+vrouw= recent_df[recent_df["Geslacht"]== 'Vrouw']
+
+
+
+#plot figuur
+fig = go.Figure(data=[
+    go.Bar(name='Man', x=man['Type'], y=man['Aantal'],marker_color='#5684FF'),
+    go.Bar(name='Vrouw', x=vrouw['Type'], y=vrouw['Aantal'], marker_color='#E3127B')
+])
+
 
 ########### Define your variables
 beers=['Chesapeake Stout', 'Snake Dog IPA', 'Imperial Porter', 'Double Dog IPA']
@@ -24,27 +42,55 @@ label2='ABV'
 githublink='https://github.com/austinlasseter/flying-dog-beers'
 sourceurl='https://www.flyingdog.com/beers/'
 
-########### Set up the chart
-bitterness = go.Bar(
-    x=beers,
-    y=ibu_values,
-    name=label1,
-    marker={'color':color1}
-)
-alcohol = go.Bar(
-    x=beers,
-    y=abv_values,
-    name=label2,
-    marker={'color':color2}
-)
 
-beer_data = [bitterness, alcohol]
-beer_layout = go.Layout(
+
+
+#plot figuur
+fig = go.Figure(data=[
+    go.Bar(name='Man', x=man['Type'], y=man['Aantal'],marker_color='#5684FF'),
+    go.Bar(name='Vrouw', x=vrouw['Type'], y=vrouw['Aantal'], marker_color='#E3127B')
+])
+
+# plot tekst en layout
+fig.update_layout(
+    title={
+        'text': "Man/Vrouw verdeling positief getest voor corona",
+        'y':0.95,
+        'x':0.5,
+        'xanchor': 'center',
+        'yanchor': 'top'},
+    titlefont_size=30,
+    autosize=True,
     barmode='group',
-    title = mytitle
+    yaxis_title="Aantal Mensen positief voor corona",
+    plot_bgcolor='#f5f7fa',
+    #x-axis
+    xaxis=dict(
+        {'categoryorder':'array', 'categoryarray':['Ziekenhuisopname', 'Overleden','Totaal']},
+        tickfont_size=14
+        ),
+    #y-axis
+    yaxis=dict(
+        title="Aantal mensen positief getest",
+        titlefont_size=18,
+        tickfont_size=14
+    ),
+    #balken
+    bargap=0.6,
+    bargroupgap=0.1,
+    #legenda
+    legend=dict(
+        x=0.1,
+        y=1.0,
+        bgcolor='white',
+        bordercolor ='black',
+        borderwidth = 1,
+        font=dict(
+            size=12,
+            color="#000000"
+            )
+    ) 
 )
-
-beer_fig = go.Figure(data=beer_data, layout=beer_layout)
 
 
 ########### Initiate the app
@@ -58,7 +104,7 @@ app.layout = html.Div(children=[
     html.H1(myheading),
     dcc.Graph(
         id='flyingdog',
-        figure=beer_fig
+        figure=fig
     ),
     html.A('Code on Github', href=githublink),
     html.Br(),
