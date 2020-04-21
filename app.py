@@ -28,19 +28,10 @@ fig = go.Figure(data=[
 ])
 
 
-########### Define your variables
-beers=['Chesapeake Stout', 'Snake Dog IPA', 'Imperial Porter', 'Double Dog IPA']
-ibu_values=[35, 60, 85, 75]
-abv_values=[5.4, 7.1, 9.2, 4.3]
-color1='lightblue'
-color2='darkgreen'
-mytitle='Beer Comparison'
-tabtitle='beer!'
-myheading='Flying Dog Beers'
-label1='IBU'
-label2='ABV'
-githublink='https://github.com/austinlasseter/flying-dog-beers'
-sourceurl='https://www.flyingdog.com/beers/'
+#vars
+mytitle='test dash'
+tabtitle='test1'
+myheading='test dash'
 
 
 
@@ -51,25 +42,6 @@ fig = go.Figure(data=[
     go.Bar(name='Vrouw', x=vrouw['Type'], y=vrouw['Aantal'], marker_color='#E3127B')
 ])
 
-fig.add_annotation(
-    dict(
-            x=0.99,
-            y=1,
-            showarrow=False,
-            text="geüpdatet op  {:%d/%m/%Y}".format(laatste_update),
-            xref="paper",
-            yref="paper",
-        font=dict(
-            size=10,
-            color="#FFFFFF"
-            ),
-        align="center",  
-        bordercolor="#c7c7c7",
-        borderwidth=2,
-        borderpad=4,
-        bgcolor="#ff7f0e",
-        opacity=0.7
-))  
 
 # plot tekst en layout
 fig.update_layout(
