@@ -108,10 +108,8 @@ app.layout = html.Div(children=[
         id='flyingdog',
         figure=fig
     ),
-    html.A('Code on Github', href=githublink),
-    html.Br(),
-    html.A('Data Source', href=sourceurl),
-    ]
+    html.A('automatisch geüpdatet op:', laatste_update)
+        ]
 )
 
 if __name__ == '__main__':
