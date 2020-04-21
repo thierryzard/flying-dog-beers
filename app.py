@@ -92,6 +92,26 @@ fig.update_layout(
     ) 
 )
 
+#laatste update om: 
+fig.add_annotation(
+    dict(
+            x=0.99,
+            y=1,
+            showarrow=False,
+            text="geüpdatet op  {:%d/%m/%Y}".format(laatste_update),
+            xref="paper",
+            yref="paper",
+        font=dict(
+            size=10,
+            color="#FFFFFF"
+            ),
+        align="center",  
+        bordercolor="#c7c7c7",
+        borderwidth=2,
+        borderpad=4,
+        bgcolor="#ff7f0e",
+        opacity=0.7
+))  
 
 ########### Initiate the app
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
