@@ -9,7 +9,7 @@ import dash
 
 
 # Titels
-mytitle = 'piemel'
+mytitle = 'Dash'
 tabtitle = 'test1'
 myheading = 'Mijn Dashboard'
 
@@ -170,31 +170,46 @@ colors = {
 }
 
 
-app.layout = html.Div(style={'backgroundColor': colors['background']},children=[
-    html.H1(
-        children = 'Corona in Nederland',
-               style = {
-    'textAlign': 'center',
-    'color': colors['text']
-}
-),
-html.Div(children=f'automatisch geüpdatet op:{laatste_update} ', style={
-    'textAlign': 'center',
-    'color': colors['text']
-}),
+
+app.layout =html.Div(children=[
+    html.Div(children=[
+        html.H1('Corona in Nederland'),
+        html.H3("automatisch geüpdatet op  {:%d/%m/%Y}".format(laatste_update)),
+
+    ],
+             style={
+                    'textAlign': 'center',
+                    'color': colors['text'],
+                    'backgroundColor': colors['background']
+                 }
+    ),
 
 
 
-    dcc.Graph(
-        id='flyingdog',
-        figure=fig1),
-    dcc.Graph(
-        id='flyingdog2',
-        figure=fig2
-)
-]
-)
 
+          html.Div(className='row',
+                 children=[
+                    html.Div(className='four columns div',
+style={
+                                    'textAlign': 'center',
+                                    'color': colors['text'],
+                                    'backgroundColor': '#8a94a6'
+                                    },
+                             children=[
+                                 html.H2('test1'),
+                                 html.P('ashfkjdhkjahksdjf.'),
+                                 html.P('Pasdkhjsajdhushjd'),
+                                 html.P('Pasdkhjsajdhushjd')
+                                ]
+
+                             ),
+                    html.Div(className='eight columns',
+                             children=[
+                                 dcc.Graph(id='flyingdog2',figure=fig2),
+                                 dcc.Graph(id='flyingdog',figure=fig1),
+
+                             ])
+                              ])])
 
 
 
