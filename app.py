@@ -9,7 +9,7 @@ import dash
 
 
 # Titels
-mytitle = 'Dash'
+mytitle = 'piemel'
 tabtitle = 'test1'
 myheading = 'Mijn Dashboard'
 
@@ -191,25 +191,56 @@ app.layout =html.Div(children=[
                  children=[
                     html.Div(className='four columns div',
 style={
-                                    'textAlign': 'center',
+                                    'textAlign': 'left',
                                     'color': colors['text'],
-                                    'backgroundColor': '#8a94a6'
+                                    'backgroundColor': '#8a94a6','height': '80vh',
+
+
                                     },
-                             children=[
-                                 html.H2('test1'),
-                                 html.P('ashfkjdhkjahksdjf.'),
-                                 html.P('Pasdkhjsajdhushjd'),
-                                 html.P('Pasdkhjsajdhushjd')
-                                ]
+                             children=[html.Div(
+
+                                 dcc.Markdown('''### Corona in Nederland: de cijfers.'''),
+style={'textAlign': 'center',
+        'margin-left': '5%',
+    'margin-right': '5%',
+       },
+ ),
+                                 html.Div(dcc.Markdown(
+'''In deze corona-crisis wordt over de gehele wereld allerlij data bijgehouden. 
+Dit dashboard geeft de huidige statistieken van de cijfers in Nederland visueel weer.   \n
+#
+Op dit moment bevat het Dashboard:  \n
+_ - Aantal mensen positief getest voor corona per leeftijdsgroep in Nederland._   \n
+_ - Man/Vrouw verdeling positief getest voor corona._
+
+'''),
+style={'textAlign': 'left',
+        'margin-left': '15%',
+    'margin-right': '15%',
+       }
+                                          )
+
+
+                             ]
 
                              ),
                     html.Div(className='eight columns',
-                             children=[
-                                 dcc.Graph(id='flyingdog2',figure=fig2),
-                                 dcc.Graph(id='flyingdog',figure=fig1),
+                             children=[dcc.Tabs([ dcc.Tab(label='Corona per leeftijfdgroep', children=[
+                                 dcc.Graph(id='leeftijd',figure=fig2),]),
+                                 dcc.Tab(label='Man/Vrouw verdeling', children=[
+                                 dcc.Graph(id='Man/Vrouw verdeling',figure=fig1),])
+                                     ])])
 
-                             ])
-                              ])])
+
+
+                              ]),
+
+
+
+])
+
+
+
 
 
 
