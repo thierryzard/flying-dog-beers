@@ -163,26 +163,29 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 app.title = tabtitle
 
-########### Set up the layout
-colors = {
-    'background': '#203760',
-    'text': '#FFFFFF'
-}
-
 
 
 app.layout =html.Div(children=[
+
     html.Div(children=[
+html.Img(src='https://raw.githubusercontent.com/thierryzard/thierryzard/master/logo_dgw_trans.png',
+         style={
+             'height': '10%',
+             'width': '10%',
+             'textAlign': 'left',
+             'float':'left'}),
         html.H1('Corona in Nederland'),
-        html.H3("automatisch geüpdatet op  {:%d/%m/%Y}".format(laatste_update)),
+        html.H5("automatisch geüpdatet op  {:%d/%m/%Y}".format(laatste_update)),
 
     ],
-             style={
-                    'textAlign': 'center',
-                    'color': colors['text'],
-                    'backgroundColor': colors['background']
-                 }
+        style={
+            'color': '#FFFFFF',
+            'backgroundColor':'#203760',
+            'font-family':'Rubik',
+            'textAlign': 'center',
+        },
     ),
+
 
 
 
@@ -190,35 +193,62 @@ app.layout =html.Div(children=[
           html.Div(className='row',
                  children=[
                     html.Div(className='four columns div',
-style={
+                             style={
                                     'textAlign': 'left',
-                                    'color': colors['text'],
-                                    'backgroundColor': '#8a94a6','height': '80vh',
+                                    'color': '#FFFFFF',
+                                    'backgroundColor': '#8a94a6','height': '100%',
 
 
                                     },
                              children=[html.Div(
 
-                                 dcc.Markdown('''### Corona in Nederland: de cijfers.'''),
-style={'textAlign': 'center',
-        'margin-left': '5%',
-    'margin-right': '5%',
-       },
+                                 html.H3(['De cijfers.']),
+                                 style={'textAlign': 'center',
+                                        },
  ),
-                                 html.Div(dcc.Markdown(
-'''In deze corona-crisis wordt over de gehele wereld allerlij data bijgehouden. 
-Dit dashboard geeft de huidige statistieken van de cijfers in Nederland visueel weer.   \n
-#
-Op dit moment bevat het Dashboard:  \n
-_ - Aantal mensen positief getest voor corona per leeftijdsgroep in Nederland._   \n
-_ - Man/Vrouw verdeling positief getest voor corona._
 
-'''),
+
+                                 html.Div(html.H6([
+'''Gedurende deze corona-crisis wordt over de gehele wereld allerlei data bijgehouden. Denk maar aan verpsreiding, '
+aantal Geïnfecteerd, aantal doden etc. Om hier een overzicht van te krijgen is dit dashboard gecreerd.
+'verschillende grafieken geven huidige cijfers betreffende corona in Nederland overzichtelijk weer.''',
+html.Br(),
+html.Br(),
+html.Br(),
+'Op dit moment bevat het Dashboard:',
+html.Br(),
+dcc.Markdown('''- _Aantal mensen positief getest voor corona per leeftijdsgroep in Nederland._'''),
+html.Br(),
+dcc.Markdown('''- _Man/Vrouw verdeling positief getest voor corona._'''),
+html.Br(),
+html.Br(),
+]),
 style={'textAlign': 'left',
-        'margin-left': '15%',
-    'margin-right': '15%',
-       }
-                                          )
+       'margin-left': '15%',
+       'margin-right': '15%',
+       'font-family': 'Rubik',
+       },),
+                                     html.Div([html.P(['Dit Dashboard is gemaakt door ',
+       html.A('Thierry van Zundert, ', href='https://www.digitalewereld.nl/young-professionals/thierry-van-zundert', style={'color': '#FFFFFF'}),
+       'werkzaam bij ',
+       html.A('Trainee.nl ', href='https://www.trainee.nl',style={'color': '#FFFFFF'}),
+     'detachering bureau gespecialiseerd in business analytics & data science',
+html.Br(),
+html.Br(),
+html.Br(),
+html.Br(),
+       ],
+       style={'fontSize':20,
+              'textAlign': 'left',
+              'margin-left': '5%',
+              'margin-right': '5%%',
+'font-family': 'Rubik',
+              'fontSize':15,
+
+              })])
+
+
+
 
 
                              ]
